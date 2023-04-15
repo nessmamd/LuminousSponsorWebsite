@@ -1,0 +1,119 @@
+[
+    {
+     "program_name": "Energy saving for business",
+     "applicance eligibility": "any",
+     "location elgibility": "Small and medium scaled, Enterprise in alberta, Business, no profit, Cant be government owned, Common spaces and equipments, Individual businesses, Non profit organization, Co-operatives, Farms ",
+     "amount": "unknown",
+     "province(s)": "alberta",
+     "fedral": "no",
+     "scope list": "building envelope uprgrade, HVAC, others"
+    },
+    {
+     "program_name": "Comprehensive energy savings",
+     "applicance eligibility": "On-site generation and renewables, Lighting, Space, process and water heating, Cooling and ventilation, Compressed air, Refrigeration and food services, Motors and drives, Building envelope and windows",
+     "location elgibility": "Small and medium scaled, Enterprise in alberta, Business, no profit, Cant be government owned, Common spaces and equipments, Individual businesses, Non profit organization, Co-operatives, private schools not eligible for government funding, Farms regist",
+     "amount": "unknown",
+     "province(s)": "alberta",
+     "fedral": "no",
+     "scope list": "retrofits, HVAC, building envelope upgrade"
+    },
+    {
+     "program_name": "Expanded technologies pilot ",
+     "applicance eligibility": "lighting controls, daylight controls, occupancy controls, bi-level control, combined heat and power, waste heat recovery, groundsource heat pump, boilers, condensing unit heaters, boiler and heater controls, high efficnecy furnaces, chillers, rooftop, condesing make-up air unit, heat and energy recovery ventilators, demand control ventilation, destratifcation fans, HVAC pipe insulation, packaged terminal heat pumps, steam traps, economizers, steam fittings and pipe insulation, direct contact water heater, condensing storage tank water heater, condensing tankless water heater, water heater jacket, ovens, fryers, griddles, steam cookers, dishwashers, demand control kitchen ventilation, solar preheating of intake air, greenhouse top lighting, high effciency windows, ceeling and wall insulation, air curtains and door dock seals, bay LED fixture, linear led fixture replacement or retrofit, accent, exterior LED fixtures, refigerated case lighting LED, troffer fixtures and kits, LED exit signs, downlight fixtures and retrofit kits, strip curtain, night covers, evaporator fan control, automatic door closer, anti-sweat heater controls, low pressure drop filter, compressed air storage, nozzels, zero loss drain, VSD air compressor, VFD for fan or pump motor, notched or synchronous belt retorifts, ODP,TEFC",
+     "location elgibility": "anyone",
+     "amount": 250000,
+     "province(s)": "alberta",
+     "fedral": "no",
+     "scope list": "others"
+    },
+    {
+     "program_name": "Small producers energy efficiency deployment",
+     "applicance eligibility": "air fuel ratio controllers, high efficieny engines, pump jack electrification",
+     "location elgibility": "oil and gas producer ",
+     "amount": 10000,
+     "province(s)": "alberta",
+     "fedral": "no",
+     "scope list": "building envelope upgrade, HVAC, others"
+    },
+    {
+     "program_name": "clean energy improvement program",
+     "applicance eligibility": "any",
+     "location elgibility": "anyone",
+     "amount": "unknown",
+     "province(s)": "alberta",
+     "fedral": "no",
+     "scope list": "building envelope upgrade, HVAC, others"
+    },
+    {
+     "program_name": "Industrial energy efficiency program",
+     "applicance eligibility": "commerically avaliable material",
+     "location elgibility": "anyone",
+     "amount": "unknown",
+     "province(s)": "ontairo",
+     "fedral": "no",
+     "scope list": "others"
+    },
+    {
+     "program_name": "Energy manager program",
+     "applicance eligibility": "none",
+     "location elgibility": "small and medium sized enterprises, municipalities, universities, colleges, schools, and hospitals",
+     "amount": 50000,
+     "province(s)": "ontairo",
+     "fedral": "no",
+     "scope list": "hiring, others"
+    },
+    {
+     "program_name": "Green industrial facilities and manufacturing program ",
+     "applicance eligibility": "none",
+     "location elgibility": "small and medium-sized enterprises, large businesses",
+     "amount": "unknown",
+     "province(s)": "all",
+     "fedral": "yes",
+     "scope list": "others"
+    },
+    {
+     "program_name": "Energy manager program",
+     "applicance eligibility": "none",
+     "location elgibility": "small and medium sized enterprises, municipalities, universities, colleges, schools, and hospitals",
+     "amount": 50000,
+     "province(s)": "saskatchewan",
+     "fedral": "no",
+     "scope list": "hiring, others"
+    },
+    {
+     "program_name": "Energy manager program",
+     "applicance eligibility": "none",
+     "location elgibility": "small and medium sized enterprises, municipalities, universities, colleges, schools, and hospitals",
+     "amount": 50000,
+     "province(s)": "manitoba",
+     "fedral": "no",
+     "scope list": "hiring, others"
+    },
+    {
+     "program_name": "Energy manager program",
+     "applicance eligibility": "none",
+     "location elgibility": "small and medium sized enterprises, municipalities, universities, colleges, schools, and hospitals",
+     "amount": 50000,
+     "province(s)": "new brunswick",
+     "fedral": "no",
+     "scope list": "hiring, others"
+    },
+    {
+     "program_name": "pocketed",
+     "applicance eligibility": "none",
+     "location elgibility": "anyone",
+     "amount": "unknown",
+     "province(s)": "all",
+     "fedral": "no",
+     "scope list": "hiring, training, others"
+    },
+    {
+     "program_name": "deep retrofit program",
+     "applicance eligibility": "none",
+     "location elgibility": "anyone",
+     "amount": "unknown",
+     "province(s)": "all",
+     "fedral": "yes",
+     "scope list": "iso 50001 compliance, energy management, monitoring submetering, training, hiring, retrofits, building envelope upgrade, others"
+    }
+   ]

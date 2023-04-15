@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+    
+  <head>
+    <title>Customers Sponsorship Login Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 0, user-scalable=no"> 
+    <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+    <script src = "/movement/mov.js"></script>
+  </head>
+  <body>
+
+    <div class = "exit">
+      <a href = "/home" class = "back">Back to Home</a> 
+    </div> 
+    <pre id = "json-data"  style = "display:none"><%= JSON.stringify(jsonFile, null, 2) %></pre>
+    <div class = "questionOne">
+      <h1> What is the company/organizations name? </h1>
+      <input id = "question" type = "text" placeholder = "Enter Answer"> 
+      <button onclick = "returnText()" class = "next">Next</button>
+    </div>
+    <div class = "questionTwo" style = "display:none">
+      <h1> What province in canada are you residing in? (do not type abbreviations) </h1>
+      <input id = "questiontwo" type = "text" placeholder = "Enter Answer"> 
+      <button onclick = "returnTextTwo()" class = "next">Next</button>
+    </div>
+    <div class = "questionThree" style = "display:none">
+      <h1> What kind of archetype/facility is your location? </h1>
+      <input id = "questionthree" type = "text" placeholder = "Enter Answer"> 
+      <button onclick = "returnTextThree()" class = "next">Next</button>
+    </div>
+    <div class = "questionFour" style = "display:none">
+      <h1> List all of the materials that you will either be replacing or upgrading during your energy savings program. (seprate each with a comma) </h1>
+      <input id = "questionfour" type = "text" placeholder = "Enter Answer"> 
+      <button onclick = "returnTextFour()" class = "next">Next</button>
+    </div>
+    <div class = "questionFive" style = "display:none">
+      <h1> List all of the materials that you will either be replacing or upgrading during your energy savings program. (seprate each with a comma) </h1>
+      <input id = "questionfive" type = "text" placeholder = "Enter Answer"> 
+      <button onclick = "returnTextFive()" class = "next" >Next</button>
+    </div>
+    <div class = "questionSix" style = "display:none">
+      <h1> What are all the retrofits that you will be working on? </h1>
+      <input type="checkbox" name="question" value="energy management" onclick="updateRetro(this)"> Energy management <br>
+      <input type="checkbox" name="question" value="study" onclick="updateRetro(this)"> Study <br>
+      <input type="checkbox" name="question" value="monitoring submetering" onclick="updateRetro(this)"> Monitoring submetering <br>
+      <input type="checkbox" name="question" value="training" onclick="updateRetro(this)"> Training <br>
+      <input type="checkbox" name="question" value="hiring" onclick="updateRetro(this)"> Hiring <br>
+      <input type="checkbox" name="question" value="iso 50001 compliance" onclick="updateRetro(this)"> Niso 50001 Compliance <br>
+      <input type="checkbox" name="question" value="sensing and automation" onclick="updateRetro(this)"> Sensing and automation <br>
+      <input type="checkbox" name="question" value="retrofits" onclick="updateRetro(this)"> Retrofits <br>
+      <input type="checkbox" name="question" value="building envelope upgrade" onclick="updateRetro(this)"> Building envelope upgrade <br>
+      <input type="checkbox" name="question" value="HVAC" onclick="updateRetro(this)"> HVAC replacement <br>
+      <input type="checkbox" name="question" value="others" onclick="updateRetro(this)"> Others <br>
+      <button onclick = "returnTextSix()" class = "next" >Next</button>
+    </div>
+    <div class = "questionSeven" style = "display:none">
+      <h1> potential sponsors</h1>
+      
+      <div class = "stats">
+        <div id = "listSponsors"></div>
+        <div id = "price"></div>
+      </div>
+
+    </div>
+  </body>
+</html>
+
+<script>
+  //loading the json file 
+  var jsonDataElem = document.getElementById("json-data");
+  var jsonData = JSON.parse(jsonDataElem.innerHTML);
+  console.log(jsonData);
+
+  //defining the varaibles used
+  let company = "";
+  let province = "";
+  let archetype = "";
+  let materials = "";
+  let retrofits = [];
+  let indexProv = [];
+  let indexArch = []; 
+  let indexApp = [];
+  let indexRetro = [];
+  let finalIndex =[]; 
+  let retros = {};
+  let mater = {};
+  let types = {};
+  let sponsorNames = [];
+  let amount = [];
+  let returnSave = ''; 
+  let sponsors = ''; 
+
+  //first question from the user, there is nothing to process there
+  function returnText() {
+    const input = document.getElementById("question");
+    company = input.value;
+    console.log(company); 
+    document.querySelector(".questionOne").style.display = "none";
+    document.querySelector(".questionTwo").style.display = "block";
+  }
+
+  //getting the proviences it is in
+  function returnTextTwo() {
+    const input = document.getElementById("questiontwo");
+    province = input.value;
+    console.log(province); 
+    document.querySelector(".questionTwo").style.display = "none";
+    document.querySelector(".questionThree").style.display = "block";
+    for(let x = 0; x < jsonData.length; x++){
+      if(jsonData[x]['province(s)'] == province || jsonData[x]['province(s)'] == "all"){
+        indexProv.push(x); 
+      }
+    }
+    console.log(indexProv); 
+  }
+
+  //getting the facility type 
+  function returnTextThree() {
+    const input = document.getElementById("questionthree");
+    archetype = input.value;
+    console.log(archetype); 
+    document.querySelector(".questionThree").style.display = "none";
+    document.querySelector(".questionFour").style.display = "block";
+    let types = {}; 
+    for(let p = 0; p < jsonData.length; p++){
+      types[p] = jsonData[p]['location elgibility'].split(",").map(str => str.trim());
+    }
+    console.log(types); 
+
+    for (let item in types){
+      for(let x in types[item]){
+        if(types[item][x] == archetype || types[item][x] == "anyone"){
+          indexArch.push(item); 
+        }
+      }
+    }
+    console.log(indexArch); 
+  }
+
+  //getting the appliances that will be used 
+  function returnTextFour() {
+    const input = document.getElementById("questionfour");
+    materials = input.value;
+    materialsList = materials.split(",").map(str => str.trim()); 
+    console.log(materialsList); 
+    console.log(materials); 
+    document.querySelector(".questionFour").style.display = "none";
+    document.querySelector(".questionFive").style.display = "block";
+    for(let x = 0; x < jsonData.length; x++){
+      mater[x] = jsonData[x]['applicance eligibility'].split(",").map(str => str.trim()); 
+    }
+    console.log(mater); 
+    for(let app in materialsList){
+      for(let itemTwo in mater){
+        for(let xTwo in mater[itemTwo]){
+          if(mater[itemTwo][xTwo] == "any" || mater[itemTwo][xTwo] == materialsList[app] || mater[itemTwo][xTwo] == "none"){
+            indexApp.push(itemTwo); 
+          }
+        }
+      }
+    }
+    console.log(indexApp); 
+  }
+  
+  //getting the retrofits 
+  function returnTextFive() {
+    const input = document.getElementById("questionfive");
+    retrofits = input.value.split(",").map(str => str.trim());
+    console.log(retrofits); 
+    document.querySelector(".questionFive").style.display = "none";
+    document.querySelector(".questionSix").style.display = "block";
+    for(let a = 0; a < jsonData.length; a++){
+      retros[a] = jsonData[a]['scope list'].split(',').map(str => str.trim()); 
+    }
+
+    console.log(retros);
+  }
+  
+
+  function updateRetro(checkbox) {
+    if (checkbox.checked) {
+      retrofits.push(checkbox.value);
+    } else {
+      retrofits = retrofits.filter((retrofit) => retrofit !== checkbox.value);
+    }
+  }
+  
+  function updatingRetro(){
+    //what about we pass the retrofits and then it does the operation on that..?
+    console.log("heyylo"); 
+    console.log(retrofits); 
+    console.log(retros); 
+    for(let ins in retrofits){
+      for(let sss in retros){
+        for(let ppp in retros[sss]){
+          // why is this taking so much in =>
+          if((retros[sss][ppp] == "others") || (retros[sss][ppp] == retrofits[ins]) && (!indexRetro.includes(sss.toString()))){
+            indexRetro.push(sss); 
+          }
+          indexRetro = indexRetro.filter(function(item, index) {
+            return index === indexRetro.indexOf(item);
+          });
+        }
+      }
+    }
+    console.log("SDFGHJKHGFGHJ"); 
+    console.log(indexRetro); 
+  }
+
+  //these are the storage of the values
+  function returnTextSix() {
+    updatingRetro(); 
+    console.log(company);
+    console.log(province);
+    console.log(archetype);
+    console.log(materials);
+    console.log(retrofits);
+    document.querySelector(".questionSix").style.display = "none";
+    document.querySelector(".questionSeven").style.display = "block";
+    //here is where we get all of the possible places that are eligible
+    //loop through the size of it all and if there are any overlaps pass it
+    //ands: province and archetype
+    //ors: materials and retrofits
+    indexProv = indexProv.map(x => parseInt(x));
+    console.log(indexProv);
+    indexArch = indexArch.map(x => parseInt(x));
+    console.log(indexArch);
+    indexApp = indexApp.map(x => parseInt(x));
+    console.log(indexApp); 
+    indexRetro = indexRetro.map(x => parseInt(x));
+    console.log(indexRetro); 
+    finalIndex = finalIndex.map(x => parseInt(x));
+    console.log(finalIndex); 
+
+    //indexProv and indexArch are a must = 1 boom
+
+    for(let ll = 0; ll < jsonData.length; ll++){
+      if((indexProv.includes(ll) && indexArch.includes(ll)) && (indexApp.includes(ll) || indexRetro.includes(ll))){
+        finalIndex.push(ll); 
+      }
+    }console.log(finalIndex); 
+
+    finalSponsors();
+    //now that we have those values, we can then get the values and the list 
+  }
+
+  function finalSponsors(){
+    for(let b in finalIndex){
+      sponsorNames[b] = jsonData[finalIndex[b]]['program_name']; 
+      amount[b] = jsonData[finalIndex[b]]['amount']; 
+    }
+    console.log(amount);
+    console.log(sponsorNames); 
+    //we need to display the sponsorNames
+    //we need to display the returnSave
+    if(amount.length == 0){
+      returnSave = ""
+      sponsorNames[0] = "There are no sponsors avaiable for your facility, please try again soon"; 
+    }
+
+    let uk = 0;
+    let value = 0;
+    for(let d in amount){
+      if(amount[d] == "unknown"){
+        uk++;
+      }
+      else{
+        value += parseInt(amount[d]); 
+      }
+    }
+
+
+    if(uk == amount.length){
+      returnSave = "the sponsors do not have a sponsor range, therefore the amount is unknown"; 
+    }
+    else{
+      returnSave = "A rough estimate of: " + value + "in CAD"; 
+    }
+    const changing = document.getElementById("price");
+    changing.textContent = returnSave;
+    changing.style.color = "green"; 
+
+    const sponsorsList = Object.values(sponsorNames).join(', ');
+    const listSponsorsElement = document.getElementById("listSponsors");
+    listSponsorsElement.textContent = sponsorsList;
+    listSponsorsElement.style.fontSize = "40px"; 
+    listSponsorsElement.style.color = "red"; 
+
+
+  }
+
+
+  //now we process the values and give the write output
+  //loop through the dictonaries and store the index of the proviences
+  
+</script>
